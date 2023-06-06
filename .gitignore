@@ -1,3 +1,6 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+.idea
+
 # Logs
 logs
 *.log
@@ -35,12 +38,18 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
+# Ignore built files
+build
+
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 
 # Dependency directories
 node_modules/
 jspm_packages/
+
+# ignore vs code project config files
+.vss
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
@@ -72,16 +81,12 @@ web_modules/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variable files
-.env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
-
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
+
+# ignore key
+*.pem
 
 # Next.js build output
 .next
@@ -128,3 +133,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+# Environment varibles
+*.env
+*.env.*
