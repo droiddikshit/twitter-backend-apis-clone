@@ -65,60 +65,60 @@ export class ForbiddenResponse extends ApiResponse {
       super(StatusCode.FAILURE, ResponseStatus.FORBIDDEN, message);
     }
   }
-
+  
   export class BadRequestResponse extends ApiResponse {
     constructor(message = 'Bad Parameters') {
       super(StatusCode.FAILURE, ResponseStatus.BAD_REQUEST, message);
     }
   }
-
+  
   export class InternalErrorResponse extends ApiResponse {
     constructor(message = 'Internal Error') {
       super(StatusCode.FAILURE, ResponseStatus.INTERNAL_ERROR, message);
     }
   }
-
+  
   export class SuccessMsgResponse extends ApiResponse {
     constructor(message: string) {
       super(StatusCode.SUCCESS, ResponseStatus.SUCCESS, message);
     }
   }
-
+  
   export class FailureMsgResponse extends ApiResponse {
     constructor(message: string) {
       super(StatusCode.FAILURE, ResponseStatus.SUCCESS, message);
     }
   }
-
+  
   export class SuccessResponse<T> extends ApiResponse {
     constructor(message: string, private data: T) {
       super(StatusCode.SUCCESS, ResponseStatus.SUCCESS, message);
     }
-
+  
     send(res: Response): Response {
       return super.prepare<SuccessResponse<T>>(res, this);
     }
   }
-
+  
   export class AccessTokenErrorResponse extends ApiResponse {
     private instruction = 'refresh_token';
-
+  
     constructor(message = 'Access token invalid') {
       super(StatusCode.INVALID_ACCESS_TOKEN, ResponseStatus.UNAUTHORIZED, message);
     }
-
+  
     send(res: Response): Response {
       res.setHeader('instruction', this.instruction);
       return super.prepare<AccessTokenErrorResponse>(res, this);
     }
   }
-
+  
   export class TokenRefreshResponse extends ApiResponse {
     constructor(message: string, private accessToken: string, private refreshToken: string) {
       super(StatusCode.SUCCESS, ResponseStatus.SUCCESS, message);
     }
-
+  
     send(res: Response): Response {
       return super.prepare<TokenRefreshResponse>(res, this);
     }
-  } 
+  }  

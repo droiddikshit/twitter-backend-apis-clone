@@ -3,7 +3,7 @@ import { ProtectedRequest } from '../types/app-request';
 import UserRepo from '../database/repository/UserRepo';
 import { AuthFailureError, AccessTokenError, TokenExpiredError } from '../core/ApiError';
 import JWT from '../core/JWT';
-import { getAccessToken, validateTokenData } from '../core/authutils';
+import { getAccessToken, validateTokenData } from '../core/authUtils';
 import { Types } from 'mongoose';
 import validator, { ValidationSource } from './validator';
 import schema from './schema';
@@ -23,7 +23,7 @@ export default router.use(
             const user = await UserRepo.findById(new Types.ObjectId(payload.sub));
             if(!user) 
                 throw new AuthFailureError('User not registered');
-
+            
             req.user = user;
 
             return next();
@@ -33,3 +33,4 @@ export default router.use(
         }
     })
 );
+

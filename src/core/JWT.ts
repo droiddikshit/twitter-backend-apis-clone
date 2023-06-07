@@ -25,7 +25,8 @@ export default class JWT {
     const cert = await this.readPrivateKey();
     if (!cert) throw new InternalError('Token generation failure');
     // @ts-ignore
-    return promisify(sign)({ ...payload }, cert, { algorithm: 'RS256' });
+    return promisify(sign)({ ...payload }, cert, { algorithm: 'RS256', allowInsecureKeySizes: true }
+    );
   }
 
   /**

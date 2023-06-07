@@ -1,3 +1,4 @@
+
 import { Response } from 'express';
 import { environment } from '../config';
 import {
@@ -26,7 +27,7 @@ export abstract class ApiError extends Error {
     constructor(public type: ErrorType, public message: string = 'error') {
       super(type);
     }
-
+  
     public static handle(err: ApiError, res: Response): Response {
       switch (err.type) {
         case ErrorType.BAD_TOKEN:
@@ -72,45 +73,46 @@ export abstract class ApiError extends Error {
       super(ErrorType.BAD_REQUEST, message);
     }
   }
-
+  
   export class NotFoundError extends ApiError {
     constructor(message = 'Not Found') {
       super(ErrorType.NOT_FOUND, message);
     }
   }
-
+  
   export class ForbiddenError extends ApiError {
     constructor(message = 'Permission denied') {
       super(ErrorType.FORBIDDEN, message);
     }
   }
-
+  
   export class NoEntryError extends ApiError {
     constructor(message = "Entry don't exists") {
       super(ErrorType.NO_ENTRY, message);
     }
   }
-
+  
   export class BadTokenError extends ApiError {
     constructor(message = 'Token is not valid') {
       super(ErrorType.BAD_TOKEN, message);
     }
   }
-
+  
   export class TokenExpiredError extends ApiError {
     constructor(message = 'Token is expired') {
       super(ErrorType.TOKEN_EXPIRED, message);
     }
   }
-
+  
   export class NoDataError extends ApiError {
     constructor(message = 'No data available') {
       super(ErrorType.NO_DATA, message);
     }
   }
-
+  
   export class AccessTokenError extends ApiError {
     constructor(message = 'Invalid access token') {
       super(ErrorType.ACCESS_TOKEN, message);
     }
   }
+  

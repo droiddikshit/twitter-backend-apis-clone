@@ -9,7 +9,7 @@ export const getAccessToken = (authorization?: string) => {
     if(!authorization) {
       throw new AuthFailureError('Invalid Authorization');
     }
-
+      
     if(!authorization.startsWith('Bearer ')) 
       throw new AuthFailureError('Invalid Authorization');
     return authorization.split(' ')[1];
@@ -40,10 +40,10 @@ export const createTokens = async (
         tokenInfo.accessTokenValidityDays,
       ),
     );
-
+  
     if (!accessToken) 
       throw new InternalError();
-
+  
     const refreshToken = await JWT.encode(
       new JwtPayload(
         tokenInfo.issuer,
@@ -52,10 +52,10 @@ export const createTokens = async (
         tokenInfo.refreshTokenValidityDays,
       ),
     );
-
+  
     if (!refreshToken) 
       throw new InternalError();
-
+  
     return {
       accessToken: accessToken,
       refreshToken: refreshToken,
