@@ -4,7 +4,7 @@ import { Types } from 'mongoose';
 
 export default class UserRepo {
     public static findById(id: Types.ObjectId): Promise<User | null> {
-
+        
         return UserModel.findOne({ _id: id, status: true})
             .select('+email +password')
             .lean<User>()

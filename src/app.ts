@@ -4,7 +4,7 @@ import cors from 'cors';
 import { corsUrl, environment } from './config';
 import './database';
 import { NotFoundError, ApiError, InternalError } from './core/ApiError';
-import routesV1 from './routes/v1'
+import routes from './routes'
 import helmet from 'helmet';
 
 process.on('uncaughtException', (e) => {
@@ -19,7 +19,7 @@ app.use(cors({ origin: corsUrl, optionsSuccessStatus: 200}));
 app.use(helmet());
 
 //Routes
-app.use('/v1', routesV1);
+app.use('', routes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => next(new NotFoundError()));
